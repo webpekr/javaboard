@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import board.dto.Article;
+import board.util.Util;
 
 public class App {
 
@@ -29,8 +30,8 @@ public class App {
 
 				Article article = new Article();
 				article.id = lastid++;
-				article.regDate = "2021-07-06 12:12:12";
-				article.updateDate = "2021-07-06 12:12:12";
+				article.regDate = Util.getNowDateStr();
+				article.updateDate = Util.getNowDateStr();
 				article.body = body;
 				article.title = title;
 				articles.add(article);

@@ -13,9 +13,9 @@ public class App {
 		System.out.println("텍스트 게시판 시작");
 
 		Scanner sc = new Scanner(System.in);
-		
+
 		List<Article> articles = new ArrayList<>();
-		int lastid =  1;
+		int lastid = 1;
 
 		while (true) {
 			System.out.print("명령어) ");
@@ -35,24 +35,21 @@ public class App {
 				article.body = body;
 				article.title = title;
 				articles.add(article);
-				System.out.printf("%d번 게시물이 생성 되었습니다.\n",article.id);
-				
+				System.out.printf("%d번 게시물이 생성 되었습니다.\n", article.id);
 
-				
-				
 			}
 //			else if (command.equals("user/article/list")) {
 			else if (command.equals("2")) {
 				System.out.printf("번호\t제목\t\t작성날짜\n");
-				
-//				for(int i=0; i<articles.size();i++) {
-//					Article article = articles.get(i);
-//					System.out.printf("%d번 게시물이 생성 되었습니다.\n",article.id);					
-//				}
-				for(Article article : articles) {
-					System.out.printf("%d)\t%s\t%s\t\n",article.id,article.title,article.regDate);
+
+				for (int i = articles.size() - 1; i >= 0; i--) {
+					Article article = articles.get(i);
+					System.out.printf("%d)\t%s\t%s\t\n", article.id, article.title, article.regDate);
 				}
-								
+//				for(Article article : articles) {
+//					System.out.printf("%d)\t%s\t%s\t\n",article.id,article.title,article.regDate);
+//				}
+
 			}
 			if (command.equals("user/system/exit")) {
 				System.out.println("프로그램을 종료합니다.");

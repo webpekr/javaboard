@@ -16,6 +16,21 @@ public class App {
 
 		List<Article> articles = new ArrayList<>();
 		int lastid = 1;
+		
+		long beforeTime = System.currentTimeMillis();
+		for(int i=0;i<10;i++) {
+			Article article = new Article();
+			article.id = lastid++;
+			article.regDate = Util.getNowDateStr();
+			article.updateDate = Util.getNowDateStr();
+			article.body = "내용 : " + article.id;
+			article.title = "제목 : " + article.id;
+			articles.add(article);						
+		}
+		long afterTime = System.currentTimeMillis();
+		long secDiffTime = (afterTime - beforeTime)/1000;
+		System.out.println("실행시간(m) : "+secDiffTime);
+		
 
 		while (true) {
 			System.out.print("명령어) ");

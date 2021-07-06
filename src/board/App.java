@@ -10,7 +10,6 @@ import board.util.Util;
 public class App {
 
 	public static void run() {
-		System.out.println("텍스트 게시판 시작");
 
 		Scanner sc = new Scanner(System.in);
 
@@ -33,6 +32,7 @@ public class App {
 		
 
 		while (true) {
+			menuView();
 			System.out.print("명령어) ");
 
 			String command = sc.nextLine().trim();
@@ -66,12 +66,68 @@ public class App {
 //				}
 
 			}
-			if (command.equals("user/system/exit")) {
+//			else if (command.equals("user/article/detail")) {
+			else if (command.startsWith("3")) {
+				String queryString = command.split("\\?",2)[1];
+				String[] queryStringBits = queryString.split("&");				
+				
+			
+				
+				int	id=0;
+								
+				for(String queryStringBit : queryStringBits ) {
+					String[] queryStringBitBits = queryStringBit.split("=",2);
+					
+					System.out.println(queryStringBitBits.length);
+					if(queryStringBitBits.length < 2) {
+						System.out.println("아이디를 입력해 주세요.");
+						break;
+					}
+						
+					String paramName = queryStringBitBits[0];
+					String paramvalue = queryStringBitBits[1];
+					
+					if(paramName.equals("id")) {
+						id = Integer.parseInt(paramvalue);
+					}					
+				}				
+				if(id==0) {
+					System.out.println("아이디를 입력해 주세요.");
+					continue;
+				}	
+				
+				Article foundArticle = null;
+				for(Article article : articles) {
+					if(article.id==id) {
+						foundArticle = article;
+						break;
+					}
+				}
+				
+				if(foundArticle == null) {
+					System.out.printf("%d번 게시물은 존재 하지 않습니다.\n", id);
+					continue;
+				}
+				
+				System.out.printf("번호 : %d\n",foundArticle.id);
+				System.out.printf("작성일자 : %s\n",foundArticle.regDate);
+				System.out.printf("업데이트일자 : %s\n",foundArticle.updateDate);
+				System.out.printf("제목 : %s\n",foundArticle.title);
+				System.out.printf("내용 : %s\n",foundArticle.body);
+				
+			}
+//			if (command.equals("user/system/exit")) {
+			if (command.equals("4")) {
 				System.out.println("프로그램을 종료합니다.");
 				break;
 			}
-
 			System.out.println("텍스트 게시판 끝");
 		}
+	}
+
+	private static void menuView() {
+		System.out.println("텍스트 게시판 시작");
+		System.out.println("등록:1 리스트:2  선택게시물:3?id=게시물번호  종료:4");
+		
 	}
 }

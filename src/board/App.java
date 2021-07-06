@@ -1,5 +1,7 @@
 package board;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import board.dto.Article;
@@ -10,6 +12,9 @@ public class App {
 		System.out.println("텍스트 게시판 시작");
 
 		Scanner sc = new Scanner(System.in);
+		
+		List<Article> articles = new ArrayList<>();
+		int lastid =  1;
 
 		while (true) {
 			System.out.print("명령어) ");
@@ -23,14 +28,14 @@ public class App {
 				String body = sc.nextLine().trim();
 
 				Article article = new Article();
-				article.id = 1;
+				article.id = lastid++;
 				article.regDate = "2021-07-06 12:12:12";
 				article.updateDate = "2021-07-06 12:12:12";
 				article.body = body;
 				article.title = title;
-				System.out.println(article.toString());
-
-				break;
+				articles.add(article);
+				System.out.printf("%d번 게시물이 생성 되었습니다.\n",article.id);
+				
 			}
 			if (command.equals("user/system/exit")) {
 				System.out.println("프로그램을 종료합니다.");

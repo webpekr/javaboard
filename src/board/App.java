@@ -181,7 +181,6 @@ public class App {
 			System.out.println("텍스트 게시판 끝");
 		}
 	}
-
 	private static void menuView() {
 		System.out.println("--------------텍스트 게시판 -----------------");
 		System.out.println("등록:1 리스트:2  선택게시물:3?id=게시물번호  삭제:4?id=게시물번호   종료:0");
